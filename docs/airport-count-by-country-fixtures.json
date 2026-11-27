@@ -1,0 +1,45 @@
+{
+  "fixtures": [
+    {
+      "name": "country-with-matching-airports",
+      "input": {
+        "method": "GET",
+        "path": "/airport/count",
+        "query": {
+          "country": "USA"
+        }
+      },
+      "expectedStatus": 200,
+      "expectedResponse": {
+        "country": "USA",
+        "airports": [
+          {
+            "name": "John F. Kennedy International Airport",
+            "city": "New York"
+          },
+          {
+            "name": "Los Angeles International Airport",
+            "city": "Los Angeles"
+          }
+        ],
+        "totalCount": 2
+      }
+    },
+    {
+      "name": "valid-country-with-no-matching-airports",
+      "input": {
+        "method": "GET",
+        "path": "/airport/count",
+        "query": {
+          "country": "Atlantis"
+        }
+      },
+      "expectedStatus": 200,
+      "expectedResponse": {
+        "country": "Atlantis",
+        "airports": [],
+        "totalCount": 0
+      }
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 package com.example.flightbooking.service;
 
 import com.example.flightbooking.dto.AirportDto;
+import com.example.flightbooking.dto.AirportCountryCountDto;
 import com.example.flightbooking.exceptions.ResourceNotFoundException;
 /*
  * Airport Service Interface
@@ -8,5 +9,6 @@ import com.example.flightbooking.exceptions.ResourceNotFoundException;
 public interface AirportService {
 	AirportDto create(AirportDto airportDto);
 	AirportDto get(Long id) throws ResourceNotFoundException;
+	AirportCountryCountDto countByCountry(String country);
 
 }

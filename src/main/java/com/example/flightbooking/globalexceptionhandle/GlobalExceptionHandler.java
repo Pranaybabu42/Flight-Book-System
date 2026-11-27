@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.example.flightbooking.exceptions.ErrorResponse;
+import com.example.flightbooking.exceptions.InvalidRequestException;
 import com.example.flightbooking.exceptions.ResourceAlreadyExistsException;
 import com.example.flightbooking.exceptions.ResourceNotFoundException;
 
@@ -14,6 +15,15 @@ import com.example.flightbooking.exceptions.ResourceNotFoundException;
  */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
+    @ExceptionHandler(InvalidRequestException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponse handleInvalidRequestException(InvalidRequestException ex) {
+        return new ErrorResponse(
+                HttpStatus.BAD_REQUEST.value(),
+                ex.getMessage()
+        );
+    }
 
     @ExceptionHandler(ResourceNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
