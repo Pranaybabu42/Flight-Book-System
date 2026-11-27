@@ -7,9 +7,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.flightbooking.dto.AirportDto;
+import com.example.flightbooking.dto.AirportCountryCountDto;
 import com.example.flightbooking.exceptions.ResourceNotFoundException;
 import com.example.flightbooking.service.AirportService;
 
@@ -31,5 +33,11 @@ public class AirportController {
     @GetMapping("/{id}")
     public ResponseEntity<AirportDto> get(@PathVariable Long id) throws ResourceNotFoundException {
         return ResponseEntity.ok(airportService.get(id));
+    }
+
+    @GetMapping("/count")
+    public ResponseEntity<AirportCountryCountDto> countByCountry(
+            @RequestParam(required = false) String country) {
+        return ResponseEntity.ok(airportService.countByCountry(country));
     }
 }
